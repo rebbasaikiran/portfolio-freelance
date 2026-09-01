@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sai Kiran Rebba — Vue.js Frontend Engineer for Hire</title>
+<meta name="description" content="Senior Vue.js frontend engineer available for contract work: migrations, micro-frontend architecture, performance, and accessibility compliance." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #12181F; --bg-raised: #182028; --line: #263140;
+    --text: #E9ECEF; --text-dim: #8A97A6;
+    --accent: #4FB0A5; --accent-dim: #2c5a54; --accent-glow: rgba(79,176,165,0.14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  body {
+    background:
+      radial-gradient(circle at 88% 0%, var(--accent-glow), transparent 42%),
+      radial-gradient(ellipse at 0% 30%, rgba(79,176,165,0.06), transparent 40%),
+      var(--bg);
+    color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6;
+    background-attachment: fixed;
+  }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  a { color: inherit; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+  .skip-link { position: absolute; left: -999px; top: 0; background: var(--accent); color: #12181F; padding: 10px 16px; z-index: 100; font-weight: 600; }
+  .skip-link:focus { left: 16px; top: 16px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  header.site-header { padding: 20px 0; border-bottom: 1px solid var(--line); position: sticky; top: 0; backdrop-filter: blur(10px); background: rgba(18,24,31,0.75); z-index: 10; }
+  .site-header .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .monogram {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), #2d7a70);
+    color: #12181F; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .brand-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: -0.01em; }
+  nav ul { list-style: none; display: flex; gap: 26px; }
+  nav a { font-size: 14px; color: var(--text-dim); text-decoration: none; position: relative; padding-bottom: 3px; }
+  nav a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.25s ease; }
+  nav a:hover { color: var(--text); }
+  nav a:hover::after { width: 100%; }
+  .available { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--accent); font-family: 'IBM Plex Mono'; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 var(--accent); animation: pulse 2.4s infinite; }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(79,176,165,0.5); }
+    70% { box-shadow: 0 0 0 6px rgba(79,176,165,0); }
+    100% { box-shadow: 0 0 0 0 rgba(79,176,165,0); }
+  }
+
+  .hero { padding: 84px 0 44px; }
+  .eyebrow { font-family: 'IBM Plex Mono'; font-size: 13px; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+  .eyebrow .line { width: 24px; height: 1px; background: var(--accent-dim); }
+  h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(34px, 5vw, 50px); letter-spacing: -0.02em; line-height: 1.14; max-width: 660px; }
+  .hero p.lede { margin-top: 22px; max-width: 580px; font-size: 17px; color: var(--text-dim); line-height: 1.68; }
+  .hero-actions { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn { font-size: 14px; text-decoration: none; padding: 13px 22px; border: 1px solid var(--line); border-radius: 6px; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.15s ease, border-color 0.15s ease; }
+  .btn.primary { background: var(--accent); color: #12181F; border-color: var(--accent); font-weight: 600; }
+  .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px var(--accent-glow); }
+  .btn:hover:not(.primary) { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 44px 0; }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 4vw, 40px); font-weight: 600; color: var(--accent); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+  .stat-label { margin-top: 8px; font-size: 13px; color: var(--text-dim); line-height: 1.45; }
+
+  section { padding: 68px 0; }
+  section h2 { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 12px; }
+  section .section-sub { color: var(--text-dim); font-size: 15px; margin-bottom: 38px; max-width: 560px; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+  .service-card { border: 1px solid var(--line); border-radius: 8px; padding: 24px; transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease; }
+  .service-card:hover { transform: translateY(-3px); border-color: var(--accent-dim); background: rgba(79,176,165,0.03); }
+  .service-icon { width: 34px; height: 34px; margin-bottom: 14px; color: var(--accent); }
+  .service-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+  .service-card p { font-size: 14px; color: var(--text-dim); }
+
+  .engagement { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; }
+  .engagement-item { position: relative; padding-left: 4px; }
+  .engagement-item .mono { font-size: 12px; color: var(--accent); display: block; margin-bottom: 10px; }
+  .engagement-item p { font-size: 14px; color: var(--text-dim); }
+
+  .job { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid var(--line); }
+  .job:last-child { border-bottom: 1px solid var(--line); }
+  .job-dates { font-family: 'IBM Plex Mono'; font-size: 13px; color: var(--text-dim); padding-top: 3px; }
+  .job-title { font-weight: 600; font-size: 16px; }
+  .job-company { color: var(--accent); font-size: 14px; margin-top: 2px; margin-bottom: 12px; }
+  .job ul { padding-left: 18px; }
+  .job li { font-size: 14.5px; color: var(--text-dim); margin-bottom: 8px; }
+  .job li::marker { color: var(--accent); }
+
+  .project { padding: 28px 0; border-top: 1px solid var(--line); transition: background 0.2s ease; }
+  .project:last-child { border-bottom: 1px solid var(--line); }
+  .project:hover { background: rgba(255,255,255,0.012); }
+  .project h3 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; margin-bottom: 9px; }
+  .project p { font-size: 14.5px; color: var(--text-dim); max-width: 640px; }
+
+  footer { padding: 60px 0 64px; border-top: 1px solid var(--line); }
+  footer h2 { font-family: 'Space Grotesk', sans-serif; font-size: 28px; margin-bottom: 15px; letter-spacing: -0.01em; }
+  footer p { color: var(--text-dim); max-width: 500px; margin-bottom: 26px; }
+  .contact-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .contact-links a { font-size: 14px; text-decoration: none; padding: 12px 19px; border: 1px solid var(--line); border-radius: 6px; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.15s ease, border-color 0.15s ease; }
+  .contact-links a.primary { background: var(--accent); color: #12181F; border-color: var(--accent); font-weight: 600; }
+  .contact-links a:hover { transform: translateY(-2px); }
+  .contact-links a:hover:not(.primary) { border-color: var(--accent); color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .engagement { grid-template-columns: 1fr; }
+    .job { grid-template-columns: 1fr; }
+    nav ul { gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <div class="monogram" aria-hidden="true">SK</div>
+      <div class="brand-name">Sai Kiran Rebba</div>
+    </div>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#engagement">How it works</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <span class="available"><span class="dot" aria-hidden="true"></span>Available for contract work</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow mono"><span class="line" aria-hidden="true"></span>Vue.js Frontend Engineer · 7+ years · Bangalore, India</div>
+      <h1>I help teams untangle frontend architecture — Vue migrations, micro-frontends, performance, accessibility.</h1>
+      <p class="lede">
+        I take on focused contract engagements for teams that need senior-level frontend work
+        done right the first time: framework migrations, performance audits, accessibility
+        compliance, or component architecture that won't need rebuilding in a year.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="mailto:rebbasaikiran88@gmail.com?subject=Project inquiry">Start a project</a>
+        <a class="btn" href="https://linkedin.com/in/sai-kiran-rebba-16b48a170" target="_blank" rel="noopener">View LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="wrap stats-grid">
+      <div><div class="stat-num" data-target="40" data-suffix="%">0%</div><div class="stat-label">Modularity gain from a Vue 2 → Vue 3 migration</div></div>
+      <div><div class="stat-num" data-target="90" data-suffix="%">0%</div><div class="stat-label">VPAT accessibility score delivered for an enterprise client</div></div>
+      <div><div class="stat-num" data-target="62.5" data-suffix="%">0%</div><div class="stat-label">Page load reduction — 8s down to 3s</div></div>
+      <div><div class="stat-num" data-target="50" data-suffix="%">0%</div><div class="stat-label">Cut in design-to-dev handoff time via a design system</div></div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <h2>What I take on</h2>
+      <p class="section-sub">Fixed-scope projects or ongoing contract work — whichever fits what you need.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 17l6-6-6-6M12 19h8"/></svg>
+          <h3>Vue 2 → Vue 3 migrations</h3>
+          <p>Composition API redesigns that improve modularity without a risky big-bang rewrite.</p>
+        </div>
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><rect x="14" y="14" width="7" height="7" rx="1.2"/></svg>
+          <h3>Micro-frontend architecture</h3>
+          <p>Module Federation setups that let teams ship independently without stepping on each other.</p>
+        </div>
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 17l5-5 4 4 8-8M14 8h6v6"/></svg>
+          <h3>Performance audits &amp; fixes</h3>
+          <p>Core Web Vitals, bundle size, and render-heavy component optimization — with before/after numbers.</p>
+        </div>
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          <h3>Accessibility compliance</h3>
+          <p>ARIA, keyboard navigation, and semantic markup audits that get you to a real VPAT score.</p>
+        </div>
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="10" height="4" rx="1"/><rect x="3" y="16" width="14" height="4" rx="1"/></svg>
+          <h3>Design systems</h3>
+          <p>Storybook-based component libraries that cut design-to-dev handoff friction for good.</p>
+        </div>
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l8 4v5c0 4.5-3.2 7.5-8 9-4.8-1.5-8-4.5-8-9V7l8-4z"/></svg>
+          <h3>Architecture reviews</h3>
+          <p>A second set of senior eyes on your frontend codebase before a big decision or hire.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="engagement">
+    <div class="wrap">
+      <h2>How it works</h2>
+      <p class="section-sub">No lengthy sales process — a short call, a scoped plan, then work begins.</p>
+      <div class="engagement">
+        <div class="engagement-item">
+          <span class="mono">01 — SCOPE</span>
+          <p>A short call to understand the problem, then a written scope with timeline and cost — no surprises later.</p>
+        </div>
+        <div class="engagement-item">
+          <span class="mono">02 — BUILD</span>
+          <p>Regular check-ins as work progresses. You see real progress, not just a status update at the end.</p>
+        </div>
+        <div class="engagement-item">
+          <span class="mono">03 — HANDOFF</span>
+          <p>Documentation and a walkthrough so your team can maintain what's built without me in the loop.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <h2>Recent work</h2>
+      <div class="project"><h3>CFTR — Cyware Fusion and Threat Response Platform</h3><p>Owned frontend architecture for a Vue 3 migration and micro-frontend integration on a centralized incident-response platform for enterprise security teams.</p></div>
+      <div class="project"><h3>Enterprise Accessibility Compliance Initiative</h3><p>Took a platform from an accessibility audit to a 90% VPAT score — meeting the bar enterprise procurement teams actually check for.</p></div>
+      <div class="project"><h3>Design System &amp; Component Library (Storybook)</h3><p>Built a shared component library adopted across product teams, cutting design-to-dev handoff friction by half.</p></div>
+
+      <div class="job">
+        <div class="job-dates mono">7+ yrs</div>
+        <div>
+          <div class="job-title">Background</div>
+          <div class="job-company">Cyware Labs · Quinbay Technologies / Blibli.com</div>
+          <ul>
+            <li>Senior frontend roles at a cybersecurity SaaS platform and a large Indonesian e-commerce platform, spanning architecture, performance, and accessibility work at real production scale.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Have a project in mind?</h2>
+    <p>Tell me what you're working on and what's not working about your current frontend — I'll reply with honest thoughts on scope and whether I'm the right fit.</p>
+    <div class="contact-links">
+      <a class="primary" href="mailto:rebbasaikiran88@gmail.com?subject=Project inquiry">Email me</a>
+      <a href="https://linkedin.com/in/sai-kiran-rebba-16b48a170" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="tel:+918555033267">+91 8555033267</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var nums = document.querySelectorAll('.stat-num');
+    function animate(el) {
+      var target = parseFloat(el.dataset.target);
+      var suffix = el.dataset.suffix || '';
+      if (reduce) { el.textContent = target + suffix; return; }
+      var start = null;
+      var duration = 900;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var val = (target * eased);
+        el.textContent = (target % 1 === 0 ? Math.round(val) : val.toFixed(1)) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animate(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    nums.forEach(function (n) { observer.observe(n); });
+  })();
+</script>
+
+</body>
+</html>
